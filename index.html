@@ -2,456 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Craftify Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0d0d0d;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .background-glow {
-      position: fixed;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(0,119,255,0.25) 0%, rgba(0,0,0,0) 70%);
-      top: -200px;
-      right: -200px;
-      z-index: -1;
-      pointer-events: none;
-    }
+    body { margin:0; font-family:Arial; background:#0f0f0f; color:white; }
 
     nav {
-      width: 100%;
-      padding: 25px 10%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      background: rgba(13, 13, 13, 0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 100;
+      display:flex;
+      justify-content:space-between;
+      padding:20px 8%;
+      background:#121212;
+      border-bottom:1px solid #222;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: #3b82f6;
+    .logo { font-size:26px; font-weight:bold; color:#3b82f6; }
+
+    .links a {
+      color:#bbb;
+      margin-left:15px;
+      text-decoration:none;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      color: #d4d4d4;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
+    .links a:hover { color:white; }
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 20px;
+      height:80vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
     }
 
-    .hero-content {
-      max-width: 900px;
-    }
+    .hero h1 { font-size:60px; }
+    .hero p { color:#aaa; margin-top:10px; }
 
-    .tag {
-      display: inline-block;
-      background: rgba(59,130,246,0.15);
-      color: #60a5fa;
-      border: 1px solid rgba(96,165,250,0.25);
-      padding: 10px 18px;
-      border-radius: 999px;
-      margin-bottom: 30px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero h1 {
-      font-size: clamp(48px, 9vw, 110px);
-      line-height: 1;
-      margin-bottom: 25px;
-      font-weight: 800;
-    }
-
-    .hero p {
-      color: #9ca3af;
-      font-size: 20px;
-      line-height: 1.7;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .hero-buttons {
-      margin-top: 45px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
+    .buttons {
+      margin-top:30px;
+      display:flex;
+      gap:15px;
+      justify-content:center;
     }
 
     .btn {
-      padding: 15px 28px;
-      border-radius: 14px;
-      font-weight: 600;
-      transition: 0.25s ease;
+      padding:12px 24px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:bold;
     }
 
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-      box-shadow: 0 0 30px rgba(37,99,235,0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      background: #3b82f6;
-    }
-
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
-      transform: translateY(-3px);
-    }
-
-    section {
-      padding: 120px 10%;
-    }
-
-    .section-title {
-      font-size: 48px;
-      margin-bottom: 20px;
-      font-weight: 800;
-    }
-
-    .section-subtitle {
-      color: #9ca3af;
-      margin-bottom: 60px;
-      font-size: 18px;
-      max-width: 650px;
-      line-height: 1.7;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-
-    .project-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(59,130,246,0.35);
-      box-shadow: 0 0 50px rgba(37,99,235,0.15);
-    }
-
-    .project-image {
-      height: 220px;
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .project-content {
-      padding: 28px;
-    }
-
-    .project-content h3 {
-      margin-bottom: 14px;
-      font-size: 24px;
-    }
-
-    .project-content p {
-      color: #9ca3af;
-      line-height: 1.7;
-      margin-bottom: 22px;
-    }
-
-    .project-link {
-      color: #60a5fa;
-      font-weight: 600;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 40px;
-      border-radius: 24px;
-    }
-
-    .about-box p {
-      color: #9ca3af;
-      line-height: 1.8;
-      margin-top: 18px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .skill {
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: rgba(37,99,235,0.12);
-      border: 1px solid rgba(59,130,246,0.25);
-      color: #93c5fd;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .contact-card {
-      text-align: center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 30px;
-      padding: 70px 40px;
-    }
-
-    .contact-card p {
-      color: #9ca3af;
-      margin: 25px auto 35px;
-      max-width: 650px;
-      line-height: 1.8;
-      font-size: 18px;
-    }
+    .primary { background:#2563eb; color:white; }
+    .secondary { background:#1a1a1a; border:1px solid #333; color:white; }
 
     footer {
-      padding: 35px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: #6b7280;
-    }
-
-    @media(max-width: 768px) {
-      nav {
-        padding: 20px 6%;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      section {
-        padding: 100px 6%;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
-
-      .section-title {
-        font-size: 38px;
-      }
+      text-align:center;
+      padding:20px;
+      border-top:1px solid #222;
+      color:#666;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="background-glow"></div>
+<nav>
+  <div class="logo">Craftify</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="configurations.html">Configurations</a>
+    <a href="graphics.html">Graphic Design</a>
+  </div>
+</nav>
 
-  <nav>
-    <div class="logo">Craftify</div>
+<section class="hero">
+  <div>
+    <h1>Craftify Portfolio</h1>
+    <p>Minecraft configurations & graphic design showcases</p>
 
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+    <div class="buttons">
+      <a class="btn primary" href="configurations.html">Configurations</a>
+      <a class="btn secondary" href="graphics.html">Graphic Design</a>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="tag">Portfolio Website</div>
-
-      <h1>
-        Building Modern
-        Digital Experiences
-      </h1>
-
-      <p>
-        Developer, designer, and creator building clean websites, Discord bots,
-        dashboards, and custom systems with modern technologies.
-      </p>
-
-      <div class="hero-buttons">
-        <a class="btn btn-primary" href="#projects">View Projects</a>
-        <a class="btn btn-secondary" href="#contact">Contact Me</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2 class="section-title">Minecraft Plugin Configurations</h2>
-    <p class="section-subtitle">
-      Professional Minecraft plugin setups, server configurations,
-      optimized menus, and custom gameplay systems.
-    </p>
-
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1614294149010-950b698f72c0?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-
-        <div class="project-content">
-          <h3>DeluxeMenus Configuration</h3>
-
-          <p>
-            Custom animated GUI menus with ranks, server navigation,
-            player statistics, and premium styled layouts.
-          </p>
-
-          <a class="project-link" href="#">View Configuration</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1627856014754-2907e2355d17?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-
-        <div class="project-content">
-          <h3>Scoreboard & TAB Setup</h3>
-
-          <p>
-            Modern animated scoreboards and TAB configurations
-            designed for survival, lifesteal, and network servers.
-          </p>
-
-          <a class="project-link" href="#">View Configuration</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-
-        <div class="project-content">
-          <h3>Server Setup & Optimization</h3>
-
-          <p>
-            Full Minecraft server setup services including permissions,
-            economy balancing, plugin integrations, and performance tuning.
-          </p>
-
-          <a class="project-link" href="#">View Setup</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="about">
-
-      <div>
-        <h2 class="section-title">About Me</h2>
-
-        <p class="section-subtitle">
-          I create modern digital projects focused on performance,
-          aesthetics, and functionality.
-        </p>
-      </div>
-
-      <div class="about-box">
-        <h3>Skills & Technologies</h3>
-
-        <p>
-          Experienced with web development, backend systems, automation,
-          APIs, Discord bots, UI design, and Linux hosting.
-        </p>
-
-        <div class="skills">
-          <div class="skill">HTML</div>
-          <div class="skill">CSS</div>
-          <div class="skill">JavaScript</div>
-          <div class="skill">Python</div>
-          <div class="skill">FastAPI</div>
-          <div class="skill">Discord.py</div>
-          <div class="skill">MariaDB</div>
-          <div class="skill">Linux</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="contact-card">
-      <h2 class="section-title">Let's Work Together</h2>
-
-      <p>
-        Looking for a developer for a custom website, Discord bot,
-        dashboard, or automation project? Let's build something.
-      </p>
-
-      <a class="btn btn-primary" href="mailto:you@example.com">
-        Contact Me
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Craftify Portfolio. All rights reserved.
-  </footer>
+<footer>© 2026 Craftify Studios</footer>
 
 </body>
 </html>
