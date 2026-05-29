@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configurations</title>
+
+  <style>
+    body { margin:0; font-family:Arial; background:#0f0f0f; color:white; }
+
+    nav {
+      display:flex;
+      justify-content:space-between;
+      padding:20px 8%;
+      background:#121212;
+      border-bottom:1px solid #222;
+    }
+
+    .logo { font-size:26px; font-weight:bold; color:#3b82f6; }
+
+    .links a {
+      color:#bbb;
+      margin-left:15px;
+      text-decoration:none;
+    }
+
+    .links a:hover { color:white; }
+
+    .hero {
+      text-align:center;
+      padding:80px 20px;
+    }
+
+    .hero h1 { font-size:50px; }
+    .hero p { color:#aaa; }
+
+    .grid {
+      padding:60px 8%;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:25px;
+    }
+
+    .card {
+      background:#171717;
+      border:1px solid #262626;
+      border-radius:16px;
+      overflow:hidden;
+    }
+
+    .card img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+    }
+
+    .card-content {
+      padding:20px;
+    }
+
+    .card-content h3 {
+      margin-bottom:10px;
+    }
+
+    .card-content p {
+      color:#999;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Craftify</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="configurations.html">Configurations</a>
+    <a href="graphics.html">Graphic Design</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Minecraft Configurations</h1>
+  <p>Plugin setups, server systems, and optimizations</p>
+</section>
+
+<section class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1614294149010-950b698f72c0">
+    <div class="card-content">
+      <h3>DeluxeMenus</h3>
+      <p>Custom GUI menus for servers</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1627856014754-2907e2355d17">
+    <div class="card-content">
+      <h3>TAB & Scoreboard</h3>
+      <p>Animated player lists and scoreboards</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3">
+    <div class="card-content">
+      <h3>Server Setup</h3>
+      <p>Full plugin setup & optimization</p>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
