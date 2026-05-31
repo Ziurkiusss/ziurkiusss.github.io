@@ -1,175 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Craftify Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
 
-<style>
-  body {
-    margin:0;
-    font-family:Arial;
-    background:#0f0f0f;
-    color:white;
-  }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-  nav {
-    display:flex;
-    justify-content:space-between;
-    padding:20px 8%;
-    background:#121212;
-    border-bottom:1px solid #222;
-  }
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
 
-  .logo { font-size:26px; font-weight:bold; color:#3b82f6; }
+        nav {
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+        }
 
-  .links a {
-    color:#bbb;
-    margin-left:15px;
-    text-decoration:none;
-  }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-  .links a:hover { color:white; }
+        nav a:hover {
+            color: #4da6ff;
+        }
 
-  .hero {
-    text-align:center;
-    padding:80px 20px;
-  }
+        section {
+            padding: 60px 40px;
+        }
 
-  .hero h1 { font-size:60px; }
-  .hero p { color:#aaa; }
+        h2 {
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2rem;
+        }
 
-  .section {
-    padding:60px 8%;
-  }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
-  .section h2 {
-    font-size:40px;
-    margin-bottom:20px;
-  }
+        .item {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
 
-  .grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-  }
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
 
-  .card {
-    background:#171717;
-    border:1px solid #262626;
-    border-radius:16px;
-    overflow:hidden;
-    transition:0.2s;
-  }
-
-  .card:hover {
-    transform:translateY(-5px);
-    border-color:#3b82f6;
-  }
-
-  .card img {
-    width:100%;
-    height:200px;
-    object-fit:cover;
-  }
-
-  .card-content {
-    padding:20px;
-  }
-
-  .card-content h3 { margin-bottom:10px; }
-  .card-content p { color:#999; }
-
-  .btn {
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 18px;
-    background:#2563eb;
-    color:white;
-    border-radius:10px;
-    text-decoration:none;
-  }
-
-  footer {
-    text-align:center;
-    padding:25px;
-    border-top:1px solid #222;
-    color:#666;
-  }
-</style>
+        .item p {
+            padding: 12px;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
 
-<nav>
-  <div class="logo">Craftify</div>
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="configurations.html">Configurations</a>
-    <a href="graphics.html">Graphic Design</a>
-  </div>
-</nav>
+    <nav>
+        <a href="#configs">Configurations</a>
+        <a href="#graphics">Graphic Design</a>
+    </nav>
 
-<section class="hero">
-  <h1>Craftify Portfolio</h1>
-  <p>Minecraft configurations & graphic design work</p>
-</section>
+    <section id="configs">
+        <h2>Configurations</h2>
 
-<!-- CONFIG PREVIEW -->
-<section class="section">
-  <h2>Configurations</h2>
+        <div class="gallery">
 
-  <div class="grid">
+            <!-- Config images fetched from photos/configs folder -->
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1614294149010-950b698f72c0">
-      <div class="card-content">
-        <h3>DeluxeMenus</h3>
-        <p>GUI menus, navigation systems</p>
-      </div>
-    </div>
+            <div class="item">
+                <img src="photos/configs/config1.png" alt="Config 1">
+                <p>Config Name</p>
+            </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1627856014754-2907e2355d17">
-      <div class="card-content">
-        <h3>TAB & Scoreboard</h3>
-        <p>Animated server UI elements</p>
-      </div>
-    </div>
+            <div class="item">
+                <img src="photos/configs/config2.png" alt="Config 2">
+                <p>Config Name</p>
+            </div>
 
-  </div>
+            <div class="item">
+                <img src="photos/configs/config3.png" alt="Config 3">
+                <p>Config Name</p>
+            </div>
 
-  <a class="btn" href="configurations.html">View All Configurations</a>
-</section>
+        </div>
+    </section>
 
-<!-- GRAPHICS PREVIEW -->
-<section class="section">
-  <h2>Graphic Design</h2>
+    <section id="graphics">
+        <h2>Graphic Design</h2>
 
-  <div class="grid">
+        <div class="gallery">
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6">
-      <div class="card-content">
-        <h3>Logos</h3>
-        <p>Server branding & identity</p>
-      </div>
-    </div>
+            <!-- Graphic images fetched from photos/graphics folder -->
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <div class="card-content">
-        <h3>Thumbnails</h3>
-        <p>YouTube & server content design</p>
-      </div>
-    </div>
+            <div class="item">
+                <img src="photos/graphics/design1.png" alt="Design 1">
+                <p>Design Name</p>
+            </div>
 
-  </div>
+            <div class="item">
+                <img src="photos/graphics/design2.png" alt="Design 2">
+                <p>Design Name</p>
+            </div>
 
-  <a class="btn" href="graphics.html">View All Designs</a>
-</section>
+            <div class="item">
+                <img src="photos/graphics/design3.png" alt="Design 3">
+                <p>Design Name</p>
+            </div>
 
-<footer>© 2026 Craftify Studios</footer>
+        </div>
+    </section>
 
 </body>
 </html>
