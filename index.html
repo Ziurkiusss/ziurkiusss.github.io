@@ -196,7 +196,7 @@ footer{
 
 <script>
 async function loadGallery() {
-    const res = await fetch("./data.json");
+    const res = await fetch("https://portfolio.craftifystudios.eu/data.json");
     const data = await res.json();
 
     const configs = document.getElementById("configsGallery");
