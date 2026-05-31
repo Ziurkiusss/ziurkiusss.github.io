@@ -30,8 +30,7 @@ body{
     color:var(--text);
 }
 
-/* Navbar */
-
+/* NAV */
 nav{
     position:fixed;
     top:20px;
@@ -65,8 +64,7 @@ nav a:hover{
     color:#fff;
 }
 
-/* Hero */
-
+/* HERO */
 .hero{
     min-height:70vh;
     display:flex;
@@ -103,8 +101,7 @@ nav a:hover{
     transform:translateY(-3px);
 }
 
-/* Sections */
-
+/* SECTIONS */
 section{
     padding:80px 8%;
 }
@@ -115,8 +112,7 @@ section{
     text-align:center;
 }
 
-/* Gallery */
-
+/* GALLERY */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -157,17 +153,16 @@ section{
     font-size:.95rem;
 }
 
-/* Footer */
-
+/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
     color:var(--secondary);
     border-top:1px solid var(--border);
 }
-
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -187,71 +182,51 @@ footer{
 
 <section id="configs">
     <h2 class="section-title">Configurations</h2>
-
-    <div class="gallery">
-
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/refs/heads/main/photos/configs/config1.jpg">
-            <div class="card-content">
-                <h3>Configuration Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="photos/configs/config2.png" alt="">
-            <div class="card-content">
-                <h3>Configuration Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="photos/configs/config3.png" alt="">
-            <div class="card-content">
-                <h3>Configuration Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-    </div>
+    <div class="gallery" id="configsGallery"></div>
 </section>
 
 <section id="graphics">
     <h2 class="section-title">Graphic Design</h2>
-
-    <div class="gallery">
-
-        <div class="card">
-            <img src="photos/graphics/design1.png" alt="">
-            <div class="card-content">
-                <h3>Design Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="photos/graphics/design2.png" alt="">
-            <div class="card-content">
-                <h3>Design Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="photos/graphics/design3.png" alt="">
-            <div class="card-content">
-                <h3>Design Name</h3>
-                <p>Description placeholder.</p>
-            </div>
-        </div>
-
-    </div>
+    <div class="gallery" id="graphicsGallery"></div>
 </section>
 
 <footer>
     © 2026 Your Portfolio
 </footer>
+
+<script>
+async function loadGallery() {
+    const res = await fetch("./data.json");
+    const data = await res.json();
+
+    const configs = document.getElementById("configsGallery");
+    const graphics = document.getElementById("graphicsGallery");
+
+    data.configs.forEach(item => {
+        configs.innerHTML += `
+        <div class="card">
+            <img src="${item.file}">
+            <div class="card-content">
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+            </div>
+        </div>`;
+    });
+
+    data.graphics.forEach(item => {
+        graphics.innerHTML += `
+        <div class="card">
+            <img src="${item.file}">
+            <div class="card-content">
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+            </div>
+        </div>`;
+    });
+}
+
+loadGallery();
+</script>
 
 </body>
 </html>
