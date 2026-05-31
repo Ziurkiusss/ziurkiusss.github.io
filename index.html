@@ -94,7 +94,6 @@ nav a:hover{
     color:var(--secondary);
     max-width:700px;
     font-size:1.05rem;
-    line-height:1.6;
 }
 
 /* HERO STATS */
@@ -135,99 +134,7 @@ section{
     margin-bottom:70px;
 }
 
-/* GRID */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, 440px);
-    justify-content:center;
-    gap:30px;
-}
-
-/* CARD */
-.card{
-    width:440px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    overflow:hidden;
-    cursor:pointer;
-    transition:.25s;
-    display:flex;
-    flex-direction:column;
-}
-
-.card:hover{
-    transform:scale(1.03);
-    border-color:var(--accent);
-}
-
-.card img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-}
-
-.card-content{
-    height:60px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* MODAL */
-.modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal.show{ display:flex; }
-
-.modal img{
-    max-width:90%;
-    max-height:80%;
-    border-radius:12px;
-    border:2px solid var(--accent);
-}
-
-/* ARROWS */
-.nav-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:rgba(88,166,255,0.15);
-    border:1px solid var(--accent);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-}
-
-.nav-left{ left:30px; }
-.nav-right{ right:30px; }
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:40px;
-    color:var(--secondary);
-    border-top:1px solid var(--border);
-    margin-top:100px;
-}
-
-/* ===================== */
 /* REVIEWS */
-/* ===================== */
-
 .reviews{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -239,12 +146,6 @@ footer{
     border:1px solid var(--border);
     border-radius:16px;
     padding:16px;
-    transition:.25s;
-}
-
-.review-card:hover{
-    transform:translateY(-5px);
-    border-color:var(--accent);
 }
 
 .review-top{
@@ -260,11 +161,6 @@ footer{
     border-radius:50%;
     object-fit:cover;
     border:2px solid var(--accent);
-}
-
-.review-user{
-    display:flex;
-    flex-direction:column;
 }
 
 .username{
@@ -285,15 +181,21 @@ footer{
     font-size:0.95rem;
     line-height:1.4;
 }
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:var(--secondary);
+    border-top:1px solid var(--border);
+    margin-top:100px;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-    <a href="#configs">Configs</a>
-    <a href="#graphics">Designs</a>
-    <a href="#servers">Projects</a>
     <a href="#reviews">Reviews</a>
 </nav>
 
@@ -301,7 +203,7 @@ footer{
 
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
-    <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and graphic design work.</p>
+    <p>High-quality Minecraft configurations and graphic design work.</p>
 
     <div class="hero-info">
         <div class="info-box"><span class="num">20+</span>Projects</div>
@@ -311,25 +213,6 @@ footer{
     </div>
 </div>
 
-<section id="configs">
-<h2 class="section-title">CONFIGURATIONS</h2>
-<div class="gallery">
-    <div class="card"><img id="thumb0"><div class="card-content">CONFIG 1</div></div>
-    <div class="card"><img id="thumb1"><div class="card-content">CONFIG 2</div></div>
-</div>
-</section>
-
-<section id="graphics">
-<h2 class="section-title">GRAPHIC DESIGN</h2>
-<div class="gallery">
-    <div class="card"><img id="thumb2"><div class="card-content">DESIGN 1</div></div>
-</div>
-</section>
-
-<section id="servers">
-<h2 class="section-title">PROJECTS</h2>
-</section>
-
 <section id="reviews">
 <h2 class="section-title">REVIEWS</h2>
 
@@ -338,10 +221,12 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="740489672660090882">
-            <div class="review-user">
-                <div class="username">PlayerOne</div>
+
+            <div>
+                <div class="username">Loading...</div>
                 <div class="rank">Client</div>
             </div>
+
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
@@ -352,10 +237,12 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="234567890123456789">
-            <div class="review-user">
-                <div class="username">ServerOwner</div>
+
+            <div>
+                <div class="username">Loading...</div>
                 <div class="rank">Owner</div>
             </div>
+
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
@@ -371,53 +258,40 @@ footer{
 </footer>
 
 <script>
-const projects = [
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
-    ]
-},
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
-    ]
-},
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
-    ]
-}
-];
+const API_BASE = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev/";
 
-window.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("thumb0").src = projects[0].images[0];
-    document.getElementById("thumb1").src = projects[1].images[0];
-    document.getElementById("thumb2").src = projects[2].images[0];
+async function loadReviews(){
+    const cards = document.querySelectorAll(".review-card");
 
-    loadPfps();
-});
-
-/* DISCORD PFP LOADER */
-async function loadPfps(){
-    const imgs = document.querySelectorAll(".pfp");
-
-    imgs.forEach(img => {
+    for (const card of cards){
+        const img = card.querySelector(".pfp");
+        const nameBox = card.querySelector(".username");
         const id = img.dataset.id;
 
-        img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id) % 5}.png`;
+        try{
+            const res = await fetch(`${API_BASE}/avatar?user=${id}`);
+            const data = await res.json();
 
-        fetch(`https://discord.com/api/v10/users/${id}`)
-            .then(r => r.json())
-            .then(user => {
-                if(user.avatar){
-                    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
-                    img.src = `https://cdn.discordapp.com/avatars/${id}/${user.avatar}.${ext}`;
-                }
-            })
-            .catch(() => {});
-    });
+            // avatar
+            if(data.avatar){
+                img.src = data.avatar;
+            } else {
+                img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+            }
+
+            // username
+            if(data.username){
+                nameBox.textContent = data.username;
+            }
+
+        } catch(e){
+            img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+            nameBox.textContent = "Unknown";
+        }
+    }
 }
+
+window.addEventListener("DOMContentLoaded", loadReviews);
 </script>
 
 </body>
