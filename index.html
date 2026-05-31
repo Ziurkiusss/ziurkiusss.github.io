@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolioo</title>
+<title>Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -15,150 +15,80 @@
     scroll-behavior:smooth;
 }
 
-:root{
-    --bg:#0d1117;
-    --card:#161b22;
-    --border:#30363d;
-    --accent:#58a6ff;
-    --text:#f0f6fc;
-    --secondary:#8b949e;
-}
-
 body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
+    font-family:Inter, sans-serif;
+    background:#0d1117;
+    color:white;
 }
 
-/* NAV */
 nav{
     position:fixed;
     top:20px;
     left:50%;
     transform:translateX(-50%);
-    z-index:1000;
-
+    background:rgba(0,0,0,0.6);
+    padding:10px;
+    border-radius:999px;
     display:flex;
     gap:10px;
-
-    padding:10px;
-    border:1px solid rgba(255,255,255,0.1);
-
-    background:rgba(22,27,34,.75);
-    backdrop-filter:blur(15px);
-
-    border-radius:999px;
+    backdrop-filter:blur(10px);
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    padding:10px 18px;
+    padding:8px 16px;
     border-radius:999px;
-    transition:.25s;
-    font-weight:600;
 }
 
 nav a:hover{
-    background:var(--accent);
-    color:#fff;
+    background:#58a6ff;
 }
 
-/* HERO */
 .hero{
-    min-height:70vh;
+    height:70vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:0 20px;
 }
 
 .hero h1{
-    font-size:clamp(3rem,8vw,6rem);
-    margin-bottom:15px;
+    font-size:60px;
 }
 
-.hero p{
-    color:var(--secondary);
-    font-size:1.2rem;
-    max-width:700px;
-}
-
-.hero .button{
-    margin-top:30px;
-    text-decoration:none;
-    color:white;
-    background:var(--accent);
-    padding:14px 24px;
-    border-radius:12px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.hero .button:hover{
-    transform:translateY(-3px);
-}
-
-/* SECTIONS */
 section{
-    padding:80px 8%;
+    padding:80px 40px;
 }
 
-.section-title{
-    font-size:2.5rem;
-    margin-bottom:40px;
+h2{
     text-align:center;
+    margin-bottom:30px;
+    font-size:32px;
 }
 
-/* GALLERY */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
 .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
+    background:#161b22;
+    border-radius:12px;
     overflow:hidden;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    border-color:var(--accent);
-    box-shadow:0 15px 40px rgba(88,166,255,.15);
 }
 
 .card img{
     width:100%;
-    height:230px;
+    height:200px;
     object-fit:cover;
-    display:block;
 }
 
 .card-content{
-    padding:18px;
-}
-
-.card-content h3{
-    margin-bottom:8px;
-}
-
-.card-content p{
-    color:var(--secondary);
-    font-size:.95rem;
-}
-
-/* FOOTER */
-footer{
+    padding:10px;
     text-align:center;
-    padding:40px;
-    color:var(--secondary);
-    border-top:1px solid var(--border);
 }
 </style>
 </head>
@@ -166,66 +96,57 @@ footer{
 <body>
 
 <nav>
-    <a href="#configs">Configurations</a>
-    <a href="#graphics">Graphic Design</a>
+    <a href="#configs">Configs</a>
+    <a href="#graphics">Graphics</a>
 </nav>
 
 <div class="hero">
     <h1>Portfolio</h1>
-    <p>
-        Minecraft configurations, server setups, custom menus,
-        graphics, branding, thumbnails, and more.
-    </p>
-
-    <a href="#configs" class="button">View Projects</a>
 </div>
 
 <section id="configs">
-    <h2 class="section-title">Configurations</h2>
+    <h2>Configurations</h2>
     <div class="gallery" id="configsGallery"></div>
 </section>
 
 <section id="graphics">
-    <h2 class="section-title">Graphic Design</h2>
+    <h2>Graphic Design</h2>
     <div class="gallery" id="graphicsGallery"></div>
 </section>
 
-<footer>
-    © 2026 Your Portfolio
-</footer>
-
 <script>
-async function loadGallery() {
-    const res = await fetch("https://portfolio.craftifystudios.eu/data.json");
-    const data = await res.json();
+/*
+JUST ADD FILE PATHS HERE.
+NO JSON. NO FETCH. NO ERRORS.
+*/
 
-    const configs = document.getElementById("configsGallery");
-    const graphics = document.getElementById("graphicsGallery");
+const configs = [
+  "photos/configs/config1.png",
+  "photos/configs/config2.png",
+  "photos/configs/config3.png"
+];
 
-    data.configs.forEach(item => {
-        configs.innerHTML += `
-        <div class="card">
-            <img src="${item.file}">
-            <div class="card-content">
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
+const graphics = [
+  "photos/graphics/design1.png",
+  "photos/graphics/design2.png",
+  "photos/graphics/design3.png"
+];
+
+function render(list, id){
+    const container = document.getElementById(id);
+
+    list.forEach(src => {
+        container.innerHTML += `
+            <div class="card">
+                <img src="${src}">
+                <div class="card-content"></div>
             </div>
-        </div>`;
-    });
-
-    data.graphics.forEach(item => {
-        graphics.innerHTML += `
-        <div class="card">
-            <img src="${item.file}">
-            <div class="card-content">
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-            </div>
-        </div>`;
+        `;
     });
 }
 
-loadGallery();
+render(configs, "configsGallery");
+render(graphics, "graphicsGallery");
 </script>
 
 </body>
