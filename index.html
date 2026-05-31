@@ -38,8 +38,10 @@ nav{
     left:50%;
     transform:translateX(-50%);
     z-index:1000;
+
     display:flex;
     gap:10px;
+
     padding:10px 14px;
     border-radius:999px;
     background:rgba(22,27,34,.75);
@@ -55,8 +57,11 @@ nav a{
     font-weight:600;
 }
 
-nav a:hover{ background:var(--accent); }
+nav a:hover{
+    background:var(--accent);
+}
 
+/* CONTACT */
 .contact-btn{
     position:fixed;
     top:20px;
@@ -70,34 +75,61 @@ nav a:hover{ background:var(--accent); }
     font-weight:700;
 }
 
-/* HERO */
+/* HERO (MORE STUFF ADDED) */
 .hero{
-    min-height:65vh;
+    min-height:75vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
+    padding:0 20px;
 }
 
 .hero h1{
     font-family:'Press Start 2P', cursive;
-    font-size:2.4rem;
+    font-size:2.8rem;
 }
 
 .hero p{
     margin-top:15px;
     color:var(--secondary);
+    max-width:700px;
+    font-size:1.05rem;
+    line-height:1.6;
 }
 
-/* SECTION TITLE */
+/* EXTRA HERO INFO */
+.hero-info{
+    margin-top:30px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.info-box{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border);
+    padding:12px 16px;
+    border-radius:12px;
+    font-size:0.9rem;
+}
+
+.info-box strong{
+    color:var(--accent);
+}
+
+/* SECTION TITLES BIGGER */
 .section-title{
     font-family:'Press Start 2P', cursive;
-    font-size:1.6rem;
+    font-size:2.2rem;
     text-align:center;
-    margin-bottom:50px;
+    margin-bottom:55px;
+    letter-spacing:2px;
 }
 
+/* SECTIONS */
 section{
     padding:100px 8%;
 }
@@ -105,18 +137,18 @@ section{
 /* GRID */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fill, 420px);
+    grid-template-columns:repeat(auto-fill, 440px);
     justify-content:center;
     gap:30px;
 }
 
-/* CARD */
+/* CARD BIG */
 .card{
-    width:420px;
+    width:440px;
     height:500px;
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
     cursor:pointer;
     transition:.25s;
@@ -129,23 +161,29 @@ section{
 
 .card img{
     width:100%;
-    height:320px;
+    height:330px;
     object-fit:cover;
 }
 
+/* CARD CONTENT TIGHTER */
 .card-content{
-    padding:16px;
+    padding:10px 14px;
     text-align:center;
 }
 
+/* BIGGER CARD TITLE */
 .card-content h3{
     font-family:'Press Start 2P', cursive;
-    font-size:0.8rem;
+    font-size:1rem;
+    margin-bottom:6px;
 }
 
+/* SMALLER DESCRIPTION + LESS SPACE */
 .card-content p{
-    margin-top:8px;
+    font-size:0.85rem;
     color:var(--secondary);
+    margin:0;
+    line-height:1.2;
 }
 
 /* MODAL */
@@ -172,11 +210,10 @@ section{
     border:2px solid var(--accent);
 }
 
-/* NAV BUTTONS */
 .controls{
     margin-top:15px;
     display:flex;
-    gap:20px;
+    gap:15px;
 }
 
 .controls button{
@@ -189,7 +226,6 @@ section{
     font-weight:700;
 }
 
-/* CLOSE */
 .close{
     position:absolute;
     top:20px;
@@ -214,18 +250,62 @@ Contact Me
 
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
-    <p>Configs & Graphic Design Gallery</p>
+    <p>
+        High-quality Minecraft configurations, PvP setups, FPS optimizations,
+        and graphic design work for creators and servers.
+    </p>
+
+    <div class="hero-info">
+        <div class="info-box"><strong>20+</strong> Projects</div>
+        <div class="info-box"><strong>High</strong> Quality Work</div>
+        <div class="info-box"><strong>Fast</strong> Delivery Style</div>
+        <div class="info-box"><strong>24/7</strong> Contact</div>
+    </div>
 </div>
 
 <section id="configs">
 <h2 class="section-title">CONFIGURATIONS</h2>
-<div class="gallery" id="configsGallery"></div>
+
+<div class="gallery">
+
+    <div class="card" onclick="openGallery(this)">
+        <img src="PASTE_RAW_LINK_HERE">
+        <div class="card-content">
+            <h3>CONFIG NAME</h3>
+            <p>PvP optimized setup</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openGallery(this)">
+        <img src="PASTE_RAW_LINK_HERE">
+        <div class="card-content">
+            <h3>CONFIG NAME</h3>
+            <p>FPS performance preset</p>
+        </div>
+    </div>
+
+</div>
 </section>
 
 <section id="graphics">
 <h2 class="section-title">GRAPHIC DESIGN</h2>
-<div class="gallery" id="graphicsGallery"></div>
+
+<div class="gallery">
+
+    <div class="card" onclick="openGallery(this)">
+        <img src="PASTE_RAW_LINK_HERE">
+        <div class="card-content">
+            <h3>DESIGN NAME</h3>
+            <p>YouTube thumbnail pack</p>
+        </div>
+    </div>
+
+</div>
 </section>
+
+<footer>
+© 2026 Portfolio
+</footer>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
@@ -238,82 +318,29 @@ Contact Me
 </div>
 
 <script>
-const configs = [
-{
-    title:"Config 1",
-    desc:"PvP optimized setup",
-    images:[
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config2.png?raw=true",
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config1.png?raw=true",
-        "img3.png"
-    ]
-},
-{
-    title:"Config 2",
-    desc:"FPS boost config",
-    images:[
-        "img4.png",
-        "img5.png"
-    ]
-}
-];
+let images = [];
+let index = 0;
 
-const graphics = [
-{
-    title:"Design 1",
-    desc:"Thumbnail pack",
-    images:[
-        "img6.png",
-        "img7.png"
-    ]
-}
-];
-
-let currentImages = [];
-let currentIndex = 0;
-
-function render(list, id){
-    const container = document.getElementById(id);
-
-    list.forEach((item, i) => {
-        container.innerHTML += `
-        <div class="card" onclick="openGallery('${id}', ${i})">
-            <img src="${item.images[0]}">
-            <div class="card-content">
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-            </div>
-        </div>
-        `;
-    });
-}
-
-function openGallery(type, index){
-    const data = type === "configsGallery" ? configs : graphics;
-
-    currentImages = data[index].images;
-    currentIndex = 0;
-
-    document.getElementById("modalImg").src = currentImages[0];
+function openGallery(el){
+    images = [el.querySelector("img").src];
+    index = 0;
+    document.getElementById("modalImg").src = images[0];
     document.getElementById("modal").classList.add("show");
 }
 
 function nextImg(){
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    document.getElementById("modalImg").src = currentImages[currentIndex];
+    index = (index + 1) % images.length;
+    document.getElementById("modalImg").src = images[index];
 }
 
 function prevImg(){
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    document.getElementById("modalImg").src = currentImages[currentIndex];
+    index = (index - 1 + images.length) % images.length;
+    document.getElementById("modalImg").src = images[index];
 }
 
 function closeModal(){
     document.getElementById("modal").classList.remove("show");
 }
-
-render(configs, "configsGallery");
-render(graphics, "graphicsGallery");
 </script>
 
 </body>
