@@ -172,30 +172,36 @@ section{
     justify-content:center;
 }
 
-/* PROJECTS */
-#projects{
+/* PROJECTS (FIXED ID DUPLICATION) */
+.projects-container {
     display:flex;
     flex-wrap:wrap;
-    gap:15px;
+    gap:20px;
     justify-content:center;
 }
 
 .project-box{
     width:120px;
     height:120px;
-    border-radius:12px;
+    border-radius:16px;
     background:var(--card);
     border:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
+    transition: 0.2s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
 }
 
 .project-box img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width:80%;
+    height:80%;
+    object-fit:contain;
 }
 
 /* REVIEWS */
@@ -209,14 +215,14 @@ section{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:16px;
-    padding:16px;
+    padding:20px;
 }
 
 .review-top{
     display:flex;
     align-items:center;
     gap:12px;
-    margin-bottom:10px;
+    margin-bottom:14px;
 }
 
 .pfp{
@@ -227,8 +233,16 @@ section{
     border:2px solid var(--accent);
 }
 
+/* Stacked name and rank container */
+.user-info-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .username{
     font-weight:700;
+    font-size: 1rem;
 }
 
 .rank{
@@ -239,6 +253,8 @@ section{
 .stars{
     margin-left:auto;
     color:#ffd700;
+    align-self: flex-start;
+    margin-top: 4px;
 }
 
 .review-text{
@@ -268,7 +284,6 @@ footer{
 
 <a class="contact-btn" href="#">Contact Me</a>
 
-<!-- HERO -->
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
     <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and design work.</p>
@@ -281,7 +296,6 @@ footer{
     </div>
 </div>
 
-<!-- CONFIGS -->
 <section id="configs">
 <h2 class="section-title">CONFIGS</h2>
 <div class="gallery">
@@ -290,7 +304,6 @@ footer{
 </div>
 </section>
 
-<!-- GRAPHICS -->
 <section id="graphics">
 <h2 class="section-title">GRAPHICS</h2>
 <div class="gallery">
@@ -298,15 +311,16 @@ footer{
 </div>
 </section>
 
-<!-- PROJECTS (EMPTY PLACEHOLDER) -->
 <section id="projects">
 <h2 class="section-title">PROJECTS</h2>
-<div class="gallery">
-    <div class="card"><img id="l1"></div>
+<div class="projects-container">
+    <div class="project-box"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f3f0.png" alt="Server 1"></div>
+    <div class="project-box"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/2694.png" alt="Server 2"></div>
+    <div class="project-box"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f4d5.png" alt="Server 3"></div>
+    <div class="project-box"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f48e.png" alt="Server 4"></div>
 </div>
 </section>
 
-<!-- REVIEWS -->
 <section id="reviews">
 <h2 class="section-title">REVIEWS</h2>
 
@@ -315,8 +329,10 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="123456789012345678">
-            <div class="username">Loading...</div>
-            <div class="rank">Client</div>
+            <div class="user-info-meta">
+                <div class="username">Loading...</div>
+                <div class="rank">Client</div>
+            </div>
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">Insane configs.</div>
@@ -325,8 +341,10 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="234567890123456789">
-            <div class="username">Loading...</div>
-            <div class="rank">Owner</div>
+            <div class="user-info-meta">
+                <div class="username">Loading...</div>
+                <div class="rank">Owner</div>
+            </div>
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">Very professional work.</div>
@@ -343,8 +361,6 @@ footer{
 document.getElementById("c1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png";
 document.getElementById("c2").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png";
 document.getElementById("g1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png";
-
-document.getElementById("l1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png";
 
 /* DISCORD API WORKER */
 const API = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
