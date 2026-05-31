@@ -94,6 +94,7 @@ nav a:hover{
     color:var(--secondary);
     max-width:700px;
     font-size:1.05rem;
+    line-height:1.6;
 }
 
 /* HERO STATS */
@@ -113,9 +114,13 @@ nav a:hover{
     display:flex;
     gap:6px;
     align-items:center;
+    font-size:0.9rem;
 }
 
-.info-box .num{ color:var(--accent); font-weight:800; }
+.info-box .num{
+    color:var(--accent);
+    font-weight:800;
+}
 
 /* SECTION */
 section{
@@ -130,7 +135,7 @@ section{
     margin-bottom:70px;
 }
 
-/* GALLERY */
+/* GRID */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fill, 440px);
@@ -138,6 +143,7 @@ section{
     gap:30px;
 }
 
+/* CARD */
 .card{
     width:440px;
     background:var(--card);
@@ -209,7 +215,6 @@ section{
 .nav-left{ left:30px; }
 .nav-right{ right:30px; }
 
-/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
@@ -218,10 +223,7 @@ footer{
     margin-top:100px;
 }
 
-/* ========================= */
-/* REVIEWS (NEW UPGRADE) */
-/* ========================= */
-
+/* REVIEWS */
 .reviews{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -241,7 +243,6 @@ footer{
     border-color:var(--accent);
 }
 
-/* TOP ROW */
 .review-top{
     display:flex;
     align-items:center;
@@ -264,7 +265,6 @@ footer{
 
 .username{
     font-weight:700;
-    color:var(--text);
 }
 
 .rank{
@@ -272,19 +272,36 @@ footer{
     color:var(--secondary);
 }
 
-/* STARS */
 .stars{
     margin-left:auto;
     color:#ffd700;
-    font-size:0.95rem;
 }
 
-/* TEXT */
 .review-text{
-    color:var(--text);
     font-size:0.95rem;
     line-height:1.4;
-    margin-top:6px;
+}
+
+/* SERVERS (NOW PROJECTS) */
+.servers-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.servers-row img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s;
+}
+
+.servers-row img:hover{
+    transform:scale(1.1);
+    border-color:var(--accent);
 }
 </style>
 </head>
@@ -294,7 +311,7 @@ footer{
 <nav>
     <a href="#configs">Configs</a>
     <a href="#graphics">Designs</a>
-    <a href="#servers">Servers</a>
+    <a href="#servers">Projects</a>
     <a href="#reviews">Reviews</a>
 </nav>
 
@@ -312,6 +329,31 @@ footer{
     </div>
 </div>
 
+<section id="configs">
+<h2 class="section-title">CONFIGURATIONS</h2>
+<div class="gallery">
+    <div class="card"><img id="thumb0"><div class="card-content">CONFIG 1</div></div>
+    <div class="card"><img id="thumb1"><div class="card-content">CONFIG 2</div></div>
+</div>
+</section>
+
+<section id="graphics">
+<h2 class="section-title">GRAPHIC DESIGN</h2>
+<div class="gallery">
+    <div class="card"><img id="thumb2"><div class="card-content">DESIGN 1</div></div>
+</div>
+</section>
+
+<section id="servers">
+<h2 class="section-title">PROJECTS</h2>
+
+<div class="servers-row">
+    <img src="photos/servers/server1.png">
+    <img src="photos/servers/server2.png">
+    <img src="photos/servers/server3.png">
+</div>
+</section>
+
 <section id="reviews">
 <h2 class="section-title">REVIEWS</h2>
 
@@ -327,7 +369,7 @@ footer{
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
-            Insane quality configs, boosted my FPS massively and improved gameplay.
+            Insane configs, boosted my FPS massively.
         </div>
     </div>
 
@@ -341,7 +383,7 @@ footer{
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
-            Very fast delivery and extremely professional work.
+            Very fast delivery and professional work.
         </div>
     </div>
 
@@ -351,6 +393,33 @@ footer{
 <footer>
 © 2026 Portfolio
 </footer>
+
+<script>
+const projects = [
+{
+    images:[
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
+    ]
+},
+{
+    images:[
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
+    ]
+},
+{
+    images:[
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
+    ]
+}
+];
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("thumb0").src = projects[0].images[0];
+    document.getElementById("thumb1").src = projects[1].images[0];
+    document.getElementById("thumb2").src = projects[2].images[0];
+});
+</script>
 
 </body>
 </html>
