@@ -7,7 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
 <style>
 *{
@@ -169,9 +168,8 @@ section{
 .card-content{
     height:60px;
     display:flex;
-    font-family:'Minecraftia', sans-serif;
+    font-family:'Press Start 2P', cursive; /* Restored back to your preferred Minecraft font layout */
     font-size: 0.9rem;
-    letter-spacing: 1px;
     align-items:center;
     justify-content:center;
 }
@@ -485,12 +483,12 @@ footer{
 
 <script>
 
-/* REGISTER MULTIPLE IMAGES PER CARD SLOT HERE */
+/* REGISTER IMAGES PER SLOT */
 const galleries = {
     config1: [
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
-        "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f3f0.png", // Example multi-pic placeholder
-        "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/2694.png"  // Example multi-pic placeholder
+        "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f3f0.png", 
+        "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/2694.png"  
     ],
     config2: [
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
@@ -500,7 +498,7 @@ const galleries = {
     ]
 };
 
-/* ASSIGN PREVIEW COVER IMAGES ON LOAD */
+/* ASSIGN COVER IMAGES */
 document.getElementById("c1").src = galleries.config1[0];
 document.getElementById("c2").src = galleries.config2[0];
 document.getElementById("g1").src = galleries.design1[0];
@@ -522,7 +520,7 @@ function openLightbox(galleryKey) {
     currentImgIndex = 0;
     updateLightboxImage();
     lightbox.classList.add("active");
-    document.body.style.overflow = "hidden"; // Blocks parent scrolling behind layout
+    document.body.style.overflow = "hidden"; 
 }
 
 function closeLightbox() {
@@ -532,7 +530,6 @@ function closeLightbox() {
 
 function updateLightboxImage() {
     lbImg.src = currentGallery[currentImgIndex];
-    // Hide arrows if there's only 1 image in that specific gallery
     if (currentGallery.length <= 1) {
         lbPrev.style.display = "none";
         lbNext.style.display = "none";
@@ -546,14 +543,12 @@ function navigateGallery(direction) {
     if (currentGallery.length <= 1) return;
     currentImgIndex += direction;
     
-    // Seamless loops around bounds
     if (currentImgIndex < 0) currentImgIndex = currentGallery.length - 1;
     if (currentImgIndex >= currentGallery.length) currentImgIndex = 0;
     
     updateLightboxImage();
 }
 
-// Bind card actions dynamically
 document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
         const key = card.dataset.gallery;
@@ -561,13 +556,11 @@ document.querySelectorAll(".card").forEach(card => {
     });
 });
 
-// Event Binding Listeners
 lbClose.addEventListener("click", closeLightbox);
 lbPrev.addEventListener("click", (e) => { e.stopPropagation(); navigateGallery(-1); });
 lbNext.addEventListener("click", (e) => { e.stopPropagation(); navigateGallery(1); });
 lightbox.addEventListener("click", (e) => { if(e.target === lightbox) closeLightbox(); });
 
-// Desktop Keyboard Navigation
 window.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("active")) return;
     if (e.key === "Escape") closeLightbox();
