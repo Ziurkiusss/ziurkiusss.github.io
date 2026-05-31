@@ -329,29 +329,33 @@ Contact Me
 const projects = [
 {
     images:[
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config1.png?raw=true",
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config2.png?raw=true"
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
     ]
 },
 {
     images:[
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config2.png?raw=true"
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
     ]
 },
 {
     images:[
-        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/graphics/design1.png?raw=true"
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
     ]
 }
 ];
 
-// 🔥 ONLY FIX: thumbnails now use first image
-document.getElementById("thumb0").src = projects[0].images[0];
-document.getElementById("thumb1").src = projects[1].images[0];
-document.getElementById("thumb2").src = projects[2].images[0];
-
 let current = 0;
 let index = 0;
+
+/* ✅ FIX: WAIT UNTIL PAGE IS READY */
+window.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("thumb0").src = projects[0].images[0];
+    document.getElementById("thumb1").src = projects[1].images[0];
+    document.getElementById("thumb2").src = projects[2].images[0];
+
+});
 
 function openGallery(i){
     current = i;
