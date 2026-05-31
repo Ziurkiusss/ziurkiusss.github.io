@@ -174,60 +174,18 @@ section{
     justify-content:center;
 }
 
-/* MODAL */
-.modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal.show{ display:flex; }
-
-.modal img{
-    max-width:90%;
-    max-height:80%;
-    border-radius:12px;
-    border:2px solid var(--accent);
-}
-
-/* ARROWS */
-.nav-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:rgba(88,166,255,0.15);
-    border:1px solid var(--accent);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-}
-
-.nav-left{ left:30px; }
-.nav-right{ right:30px; }
-
-/* FOOTER */
-footer{
+/* PROJECTS EMPTY SPACE HOLDER */
+#projects-input{
     text-align:center;
-    padding:40px;
     color:var(--secondary);
-    border-top:1px solid var(--border);
-    margin-top:100px;
+    font-size:14px;
+    margin-bottom:30px;
+    border:1px dashed var(--border);
+    padding:15px;
+    border-radius:12px;
 }
 
-/* ===================== */
 /* REVIEWS */
-/* ===================== */
-
 .reviews{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -262,11 +220,6 @@ footer{
     border:2px solid var(--accent);
 }
 
-.review-user{
-    display:flex;
-    flex-direction:column;
-}
-
 .username{
     font-weight:700;
 }
@@ -284,6 +237,15 @@ footer{
 .review-text{
     font-size:0.95rem;
     line-height:1.4;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:var(--secondary);
+    border-top:1px solid var(--border);
+    margin-top:100px;
 }
 </style>
 </head>
@@ -328,6 +290,7 @@ footer{
 
 <section id="servers">
 <h2 class="section-title">PROJECTS</h2>
+
 </section>
 
 <section id="reviews">
@@ -338,10 +301,8 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="123456789012345678">
-            <div class="review-user">
-                <div class="username">PlayerOne</div>
-                <div class="rank">Client</div>
-            </div>
+            <div class="username">PlayerOne</div>
+            <div class="rank">Client</div>
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
@@ -352,10 +313,8 @@ footer{
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="234567890123456789">
-            <div class="review-user">
-                <div class="username">ServerOwner</div>
-                <div class="rank">Owner</div>
-            </div>
+            <div class="username">ServerOwner</div>
+            <div class="rank">Owner</div>
             <div class="stars">★★★★★</div>
         </div>
         <div class="review-text">
@@ -371,52 +330,66 @@ footer{
 </footer>
 
 <script>
+
+/* =========================
+   PROJECT LOGO LINKS ONLY
+   =========================
+   👉 PASTE SERVER LOGO IMAGES HERE
+*/
+const projectLogos = [
+    "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png"
+    // "https://your-server-logo2.png",
+    // "https://your-server-logo3.png"
+];
+
+/* CONFIG IMAGES */
 const projects = [
 {
     images:[
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
     ]
-},
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
-    ]
-},
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
-    ]
 }
 ];
 
 window.addEventListener("DOMContentLoaded", () => {
+
     document.getElementById("thumb0").src = projects[0].images[0];
-    document.getElementById("thumb1").src = projects[1].images[0];
-    document.getElementById("thumb2").src = projects[2].images[0];
+    document.getElementById("thumb1").src = projects[0].images[1];
+    document.getElementById("thumb2").src = projects[0].images[0];
 
     loadPfps();
 });
 
-/* DISCORD PFP LOADER */
+/* DISCORD WORKER */
+const API_BASE = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
+
 async function loadPfps(){
     const imgs = document.querySelectorAll(".pfp");
 
-    imgs.forEach(img => {
+    for(const img of imgs){
         const id = img.dataset.id;
 
-        img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id) % 5}.png`;
+        try{
+            const res = await fetch(`${API_BASE}/user/${id}`);
+            const data = await res.json();
 
-        fetch(`https://discord.com/api/v10/users/${id}`)
-            .then(r => r.json())
-            .then(user => {
-                if(user.avatar){
-                    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
-                    img.src = `https://cdn.discordapp.com/avatars/${id}/${user.avatar}.${ext}`;
-                }
-            })
-            .catch(() => {});
-    });
+            img.src = data.avatar
+                || `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+
+            const name = img.parentElement.querySelector(".username");
+
+            if(name){
+                name.textContent =
+                    data.global_name ||
+                    data.username ||
+                    "Unknown";
+            }
+
+        }catch{
+            img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+        }
+    }
 }
 </script>
 
