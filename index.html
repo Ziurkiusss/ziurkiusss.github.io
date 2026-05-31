@@ -93,18 +93,50 @@ nav a:hover{
     margin-top:15px;
     color:var(--secondary);
     max-width:700px;
+    font-size:1.05rem;
+    line-height:1.6;
 }
 
-/* SECTION */
+/* HERO STATS */
+.hero-info{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.info-box{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border);
+    padding:10px 14px;
+    border-radius:12px;
+    display:flex;
+    gap:6px;
+    align-items:center;
+    font-size:0.9rem;
+}
+
+.info-box .num{
+    color:var(--accent);
+    font-weight:800;
+}
+
+.info-box .label{
+    color:var(--text);
+}
+
+/* SECTION SPACING */
 section{
-    padding:70px 8% 90px 8%;
+    padding:90px 8% 100px 8%;
 }
 
 .section-title{
     font-family:'Press Start 2P', cursive;
     font-size:2.2rem;
     text-align:center;
-    margin-bottom:50px;
+    margin-top:30px;
+    margin-bottom:70px;
 }
 
 /* GRID */
@@ -112,12 +144,13 @@ section{
     display:grid;
     grid-template-columns:repeat(auto-fill, 440px);
     justify-content:center;
-    gap:25px;
+    gap:30px;
 }
 
 /* CARD */
 .card{
     width:440px;
+    height:auto;
     background:var(--card);
     border:1px solid var(--border);
     border-radius:18px;
@@ -133,11 +166,11 @@ section{
     border-color:var(--accent);
 }
 
-/* IMAGE */
 .card img{
     width:100%;
     height:300px;
     object-fit:cover;
+    display:block;
 }
 
 /* TITLE */
@@ -146,24 +179,31 @@ section{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:'Press Start 2P';
-    font-size:12px;
+    padding:0;
+}
+
+.card-content h3{
+    font-family:'Press Start 2P', cursive;
+    font-size:0.95rem;
+    margin:0;
 }
 
 /* MODAL */
 .modal{
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,0.92);
     display:none;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     z-index:2000;
 }
 
-.modal.show{
-    display:flex;
-}
+.modal.show{ display:flex; }
 
 .modal img{
     max-width:90%;
@@ -194,6 +234,26 @@ section{
 .nav-arrow span{
     font-size:30px;
     font-weight:900;
+    color:var(--text);
+}
+
+/* CLOSE */
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:var(--secondary);
+    border-top:1px solid var(--border);
+    margin-top:100px;
 }
 </style>
 </head>
@@ -205,11 +265,20 @@ section{
     <a href="#graphics">Designs</a>
 </nav>
 
-<a class="contact-btn" href="https://discord.com/users/YOUR_ID">Contact</a>
+<a class="contact-btn" href="https://discord.com/users/YOUR_ID" target="_blank">
+Contact Me
+</a>
 
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
-    <p>Configs and graphic designs.</p>
+    <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and graphic design work.</p>
+
+    <div class="hero-info">
+        <div class="info-box"><span class="num">20+</span><span class="label">Projects</span></div>
+        <div class="info-box"><span class="num">High</span><span class="label">Quality</span></div>
+        <div class="info-box"><span class="num">Fast</span><span class="label">Delivery</span></div>
+        <div class="info-box"><span class="num">24/7</span><span class="label">Contact</span></div>
+    </div>
 </div>
 
 <section id="configs">
@@ -219,12 +288,12 @@ section{
 
     <div class="card" onclick="openGallery(0)">
         <img id="thumb0">
-        <div class="card-content">CONFIG 1</div>
+        <div class="card-content"><h3>CONFIG 1</h3></div>
     </div>
 
     <div class="card" onclick="openGallery(1)">
         <img id="thumb1">
-        <div class="card-content">CONFIG 2</div>
+        <div class="card-content"><h3>CONFIG 2</h3></div>
     </div>
 
 </div>
@@ -237,38 +306,46 @@ section{
 
     <div class="card" onclick="openGallery(2)">
         <img id="thumb2">
-        <div class="card-content">DESIGN 1</div>
+        <div class="card-content"><h3>DESIGN 1</h3></div>
     </div>
 
 </div>
 </section>
 
+<footer>
+© 2026 Portfolio
+</footer>
+
 <!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal()">
+<div class="modal" id="modal">
+    <div class="close" onclick="closeModal()">×</div>
+
+    <div class="nav-arrow nav-left" onclick="prevImg()"><span>‹</span></div>
     <img id="modalImg">
+    <div class="nav-arrow nav-right" onclick="nextImg()"><span>›</span></div>
 </div>
 
 <script>
 const projects = [
 {
     images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
+        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config1.png?raw=true",
+        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config2.png?raw=true"
     ]
 },
 {
     images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
+        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/configs/config2.png?raw=true"
     ]
 },
 {
     images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
+        "https://github.com/Ziurkiusss/ziurkiusss.github.io/blob/main/photos/graphics/design1.png?raw=true"
     ]
 }
 ];
 
-// thumbnails = FIRST image of each project
+// 🔥 ONLY FIX: thumbnails now use first image
 document.getElementById("thumb0").src = projects[0].images[0];
 document.getElementById("thumb1").src = projects[1].images[0];
 document.getElementById("thumb2").src = projects[2].images[0];
@@ -281,8 +358,6 @@ function openGallery(i){
     index = 0;
     document.getElementById("modalImg").src = projects[current].images[index];
     document.getElementById("modal").classList.add("show");
-
-    modalClickFix();
 }
 
 function nextImg(){
@@ -297,11 +372,6 @@ function prevImg(){
 
 function closeModal(){
     document.getElementById("modal").classList.remove("show");
-}
-
-// click outside closes
-function modalClickFix(){
-    document.getElementById("modal").onclick = closeModal;
 }
 </script>
 
