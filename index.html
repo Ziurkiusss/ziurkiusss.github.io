@@ -168,7 +168,7 @@ section{
 .card-content{
     height:60px;
     display:flex;
-    font-family:'Press Start 2P', cursive; /* Restored back to your preferred Minecraft font layout */
+    font-family:'Press Start 2P', cursive;
     font-size: 0.9rem;
     align-items:center;
     justify-content:center;
@@ -568,8 +568,9 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") navigateGallery(1);
 });
 
-/* DISCORD API WORKER */
+/* DISCORD FETCH ENGINE WITH CORS PROXY BYPASS */
 const API = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
+const PROXY = "https://api.allorigins.win/get?url=";
 
 async function load(){
     const cards = document.querySelectorAll(".review-card");
@@ -580,13 +581,19 @@ async function load(){
         const id = img.dataset.id;
 
         try{
-            const res = await fetch(`${API}/user/${id}`);
-            const d = await res.json();
+            // Wraps your current worker request into a proxy link to strip CORS blocking headers
+            const targetUrl = encodeURIComponent(`${API}/?user=${id}`);
+            const res = await fetch(`${PROXY}${targetUrl}`);
+            const proxyData = await res.json();
+            
+            // Your worker's response payload is nested inside proxyData.contents
+            const d = JSON.parse(proxyData.contents);
 
+            // Directly handles output payload schema fields from your worker structure
             img.src = d.avatar || `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
-            name.textContent = d.global_name || d.username || "Unknown";
+            name.textContent = d.displayName || d.username || "Unknown";
 
-        }catch{
+        }catch(err){
             img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
             name.textContent = "Unknown";
         }
