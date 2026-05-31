@@ -299,9 +299,7 @@ section{
     position: relative;
     max-width: 85%;
     max-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex;  /* Dynamically shrink-wraps exactly around the scaled image */
 }
 
 .lightbox-img {
@@ -313,20 +311,34 @@ section{
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* Close button */
+/* Close button - Fixed to stay inside the top-right corner of the image boundaries */
 .lightbox-close {
     position: absolute;
-    top: -50px;
-    right: 0;
+    top: 15px;
+    right: 15px;
     color: var(--text);
-    font-size: 2.5rem;
-    font-weight: 300;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1;
     cursor: pointer;
-    background: none;
-    border: none;
-    transition: color 0.2s;
+    background: rgba(13, 17, 23, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 2200;
 }
-.lightbox-close:hover { color: var(--accent); }
+.lightbox-close:hover { 
+    color: white;
+    background: #ff4a4a;
+    border-color: #ff4a4a;
+    transform: scale(1.05);
+}
 
 /* Circle Sideways V Navigation Buttons */
 .lightbox-btn {
@@ -581,15 +593,11 @@ async function load(){
         const id = img.dataset.id;
 
         try{
-            // Wraps your current worker request into a proxy link to strip CORS blocking headers
             const targetUrl = encodeURIComponent(`${API}/?user=${id}`);
             const res = await fetch(`${PROXY}${targetUrl}`);
             const proxyData = await res.json();
-            
-            // Your worker's response payload is nested inside proxyData.contents
             const d = JSON.parse(proxyData.contents);
 
-            // Directly handles output payload schema fields from your worker structure
             img.src = d.avatar || `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
             name.textContent = d.displayName || d.username || "Unknown";
 
