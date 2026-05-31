@@ -208,8 +208,10 @@ section{
 /* REVIEWS */
 .reviews{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-    gap:20px;
+    /* This automatically wraps cards to the next line without squishing them */
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+    justify-content: center;
 }
 
 .review-card{
@@ -217,6 +219,11 @@ section{
     border:1px solid var(--border);
     border-radius:16px;
     padding:20px;
+    /* Force a minimum height so cards look uniform even with short text */
+    min-height: 160px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .review-top{
@@ -224,6 +231,14 @@ section{
     align-items:center;
     gap:12px;
     margin-bottom:14px;
+}
+
+.review-text{
+    font-size:0.95rem;
+    line-height:1.4;
+    /* Added to handle long text safely */
+    word-break: break-word; 
+    overflow-wrap: anywhere;
 }
 
 .pfp{
