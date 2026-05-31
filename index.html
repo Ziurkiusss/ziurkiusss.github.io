@@ -215,6 +215,7 @@ section{
 .nav-left{ left:30px; }
 .nav-right{ right:30px; }
 
+/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
@@ -223,7 +224,10 @@ footer{
     margin-top:100px;
 }
 
+/* ===================== */
 /* REVIEWS */
+/* ===================== */
+
 .reviews{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -281,28 +285,6 @@ footer{
     font-size:0.95rem;
     line-height:1.4;
 }
-
-/* SERVERS (NOW PROJECTS) */
-.servers-row{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.servers-row img{
-    width:90px;
-    height:90px;
-    object-fit:cover;
-    border-radius:14px;
-    border:1px solid var(--border);
-    transition:.25s;
-}
-
-.servers-row img:hover{
-    transform:scale(1.1);
-    border-color:var(--accent);
-}
 </style>
 </head>
 
@@ -346,12 +328,6 @@ footer{
 
 <section id="servers">
 <h2 class="section-title">PROJECTS</h2>
-
-<div class="servers-row">
-    <img src="photos/servers/server1.png">
-    <img src="photos/servers/server2.png">
-    <img src="photos/servers/server3.png">
-</div>
 </section>
 
 <section id="reviews">
@@ -361,7 +337,7 @@ footer{
 
     <div class="review-card">
         <div class="review-top">
-            <img class="pfp" src="photos/pfps/user1.png">
+            <img class="pfp" data-id="740489672660090882">
             <div class="review-user">
                 <div class="username">PlayerOne</div>
                 <div class="rank">Client</div>
@@ -375,7 +351,7 @@ footer{
 
     <div class="review-card">
         <div class="review-top">
-            <img class="pfp" src="photos/pfps/user2.png">
+            <img class="pfp" data-id="234567890123456789">
             <div class="review-user">
                 <div class="username">ServerOwner</div>
                 <div class="rank">Owner</div>
@@ -418,7 +394,30 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("thumb0").src = projects[0].images[0];
     document.getElementById("thumb1").src = projects[1].images[0];
     document.getElementById("thumb2").src = projects[2].images[0];
+
+    loadPfps();
 });
+
+/* DISCORD PFP LOADER */
+async function loadPfps(){
+    const imgs = document.querySelectorAll(".pfp");
+
+    imgs.forEach(img => {
+        const id = img.dataset.id;
+
+        img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id) % 5}.png`;
+
+        fetch(`https://discord.com/api/v10/users/${id}`)
+            .then(r => r.json())
+            .then(user => {
+                if(user.avatar){
+                    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
+                    img.src = `https://cdn.discordapp.com/avatars/${id}/${user.avatar}.${ext}`;
+                }
+            })
+            .catch(() => {});
+    });
+}
 </script>
 
 </body>
