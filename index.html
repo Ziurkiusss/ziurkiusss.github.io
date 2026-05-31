@@ -73,9 +73,9 @@ nav a:hover{
     font-weight:700;
 }
 
-/* HERO */
+/* HERO (FIXED SPACING) */
 .hero{
-    min-height:80vh;
+    min-height:65vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -126,11 +126,12 @@ nav a:hover{
     color:var(--text);
 }
 
-/* SECTION SPACING */
+/* SECTION (FIXED GAP) */
 section{
-    padding:90px 8% 100px 8%;
+    padding:50px 8% 100px 8%;
 }
 
+/* SECTION TITLE */
 .section-title{
     font-family:'Press Start 2P', cursive;
     font-size:2.2rem;
@@ -345,17 +346,15 @@ const projects = [
 }
 ];
 
-let current = 0;
-let index = 0;
-
-/* ✅ FIX: WAIT UNTIL PAGE IS READY */
+// thumbnails
 window.addEventListener("DOMContentLoaded", () => {
-
     document.getElementById("thumb0").src = projects[0].images[0];
     document.getElementById("thumb1").src = projects[1].images[0];
     document.getElementById("thumb2").src = projects[2].images[0];
-
 });
+
+let current = 0;
+let index = 0;
 
 function openGallery(i){
     current = i;
