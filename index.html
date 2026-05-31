@@ -456,7 +456,7 @@ footer{
             </div>
             <div class="stars">★★★★★</div>
         </div>
-        <div class="review-text">"Insane configs. "</div>
+        <div class="review-text">"Insane configs. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</div>
     </div>
 
     <div class="review-card">
@@ -599,28 +599,27 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") navigateGallery(1);
 });
 
-/* INSTANT JSONP FETCH ENGINE */
+/* CLEAN DIRECT FETCH ENGINE WITHOUT PROXY HOOKS */
 const API = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
 
-// Global map to correlate dynamic JSONP script responses with UI nodes
-window.discordCallbacks = {};
-
-function load() {
+async function load() {
     const cards = document.querySelectorAll(".review-card");
 
-    cards.forEach((c, index) => {
+    cards.forEach(async (c) => {
         const img = c.querySelector(".pfp");
         const name = c.querySelector(".username");
         const id = img.dataset.id;
         
-        // Setup fallbacks immediately in case the id is bad or something breaks
         const defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${Number(id) % 5}.png`;
 
-        // Unique dynamic function name for this specific review card
-        const callbackName = `cb_${id}_${index}`;
+        try {
+            // Fetch directly from your API endpoint safely
+            const res = await fetch(`${API}/?user=${id}`);
+            
+            if (!res.ok) throw new Error("Network error");
+            
+            const data = await res.json();
 
-        // Define what happens instantly when your worker script responds
-        window.discordCallbacks[callbackName] = function(data) {
             if (data) {
                 img.src = data.avatar || defaultAvatar;
                 name.textContent = data.displayName || data.username || "Unknown";
@@ -628,25 +627,11 @@ function load() {
                 img.src = defaultAvatar;
                 name.textContent = "Unknown";
             }
-            // Cleanup the injected script node from DOM
-            document.getElementById(`script_${callbackName}`)?.remove();
-            delete window.discordCallbacks[callbackName];
-        };
-
-        // Create and inject the script element. This requests JSONP directly from your worker!
-        const script = document.createElement("script");
-        script.id = `script_${callbackName}`;
-        script.src = `${API}/?user=${id}&callback=window.discordCallbacks.${callbackName}`;
-        
-        // Handle network connection timeouts or script load errors smoothly
-        script.onerror = function() {
+        } catch (err) {
+            // Handle error block instantly with clean fallback imagery
             img.src = defaultAvatar;
             name.textContent = "Unknown";
-            script.remove();
-            delete window.discordCallbacks[callbackName];
-        };
-
-        document.body.appendChild(script);
+        }
     });
 }
 
