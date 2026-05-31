@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
 
-<!-- Minecraft-style font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -39,14 +38,13 @@ nav{
     left:50%;
     transform:translateX(-50%);
     z-index:1000;
-
     display:flex;
     gap:10px;
     padding:10px;
-    border:1px solid rgba(255,255,255,0.1);
+    border-radius:999px;
     background:rgba(22,27,34,.75);
     backdrop-filter:blur(15px);
-    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.1);
 }
 
 nav a{
@@ -74,11 +72,10 @@ nav a:hover{
 .hero h1{
     font-family:'Press Start 2P', cursive;
     font-size:2.2rem;
-    line-height:1.5;
 }
 
 .hero p{
-    margin-top:20px;
+    margin-top:15px;
     color:var(--secondary);
 }
 
@@ -89,55 +86,67 @@ section{
 
 .section-title{
     font-family:'Press Start 2P', cursive;
-    font-size:1.2rem;
+    font-size:1.1rem;
     margin-bottom:40px;
     text-align:center;
 }
 
-/* GRID */
+/* GRID (FIXED STABLE SYSTEM) */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fill, 320px);
+    justify-content:center;
     gap:25px;
 }
 
-/* CARD */
+/* FIXED CARD SIZE */
 .card{
+    width:320px;
+    height:320px;
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
     overflow:hidden;
-    transition:.3s;
     cursor:pointer;
+    transition:.25s;
+    display:flex;
+    flex-direction:column;
 }
 
 .card:hover{
-    transform:translateY(-8px) scale(1.02);
+    transform:scale(1.03);
     border-color:var(--accent);
 }
 
+/* FIXED IMAGE AREA */
 .card img{
     width:100%;
     height:220px;
     object-fit:cover;
 }
 
+/* TEXT AREA FIXED */
 .card-content{
-    padding:14px;
+    padding:10px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
 }
 
 .card-content h3{
     font-family:'Press Start 2P', cursive;
-    font-size:0.6rem;
-    margin-bottom:8px;
+    font-size:0.55rem;
+    margin-bottom:6px;
 }
 
 .card-content p{
-    font-size:0.9rem;
+    font-size:0.85rem;
     color:var(--secondary);
 }
 
-/* MODAL (IMAGE POPUP) */
+/* MODAL */
 .modal{
     position:fixed;
     top:0;
@@ -151,15 +160,15 @@ section{
     z-index:2000;
 }
 
+.modal.show{
+    display:flex;
+}
+
 .modal img{
     max-width:90%;
     max-height:85%;
     border-radius:12px;
     border:2px solid var(--accent);
-}
-
-.modal.show{
-    display:flex;
 }
 
 .modal-close{
@@ -168,7 +177,6 @@ section{
     right:30px;
     font-size:30px;
     cursor:pointer;
-    color:white;
 }
 
 /* FOOTER */
@@ -190,7 +198,7 @@ footer{
 
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
-    <p>Configs & Graphic Designs</p>
+    <p>Configs & Designs</p>
 </div>
 
 <section id="configs">
@@ -201,8 +209,8 @@ footer{
         <div class="card" onclick="openModal(this)">
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
-                <h3>CONFIG 1</h3>
-                <p>Example description</p>
+                <h3>Config 1</h3>
+                <p>Description</p>
             </div>
         </div>
 
@@ -210,7 +218,7 @@ footer{
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
                 <h3>Config 2</h3>
-                <p>Example description</p>
+                <p>Description</p>
             </div>
         </div>
 
@@ -218,7 +226,7 @@ footer{
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
                 <h3>Config 2</h3>
-                <p>Example description</p>
+                <p>Description</p>
             </div>
         </div>
 
@@ -226,7 +234,14 @@ footer{
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
                 <h3>Config 2</h3>
-                <p>Example description</p>
+                <p>Description</p>
+            </div>
+        </div>
+        <div class="card" onclick="openModal(this)">
+            <img src="PASTE_RAW_LINK_HERE">
+            <div class="card-content">
+                <h3>Config 2</h3>
+                <p>Description</p>
             </div>
         </div>
 
@@ -234,15 +249,7 @@ footer{
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
                 <h3>Config 2</h3>
-                <p>Example description</p>
-            </div>
-        </div>
-
-        <div class="card" onclick="openModal(this)">
-            <img src="PASTE_RAW_LINK_HERE">
-            <div class="card-content">
-                <h3>Config 2</h3>
-                <p>Example description</p>
+                <p>Description</p>
             </div>
         </div>
 
@@ -250,7 +257,7 @@ footer{
 </section>
 
 <section id="graphics">
-    <h2 class="section-title">GRAPHIC DESIGNS</h2>
+    <h2 class="section-title">GRAPHIC DESIGN</h2>
 
     <div class="gallery">
 
@@ -258,31 +265,47 @@ footer{
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
                 <h3>Design 1</h3>
-                <p>Example description</p>
+                <p>Description</p>
             </div>
         </div>
 
         <div class="card" onclick="openModal(this)">
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
-                <h3>Config 2</h3>
-                <p>Example description</p>
+                <h3>Design 1</h3>
+                <p>Description</p>
             </div>
         </div>
 
         <div class="card" onclick="openModal(this)">
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
-                <h3>Config 2</h3>
-                <p>Example description</p>
+                <h3>Design 1</h3>
+                <p>Description</p>
             </div>
         </div>
 
         <div class="card" onclick="openModal(this)">
             <img src="PASTE_RAW_LINK_HERE">
             <div class="card-content">
-                <h3>Config 2</h3>
-                <p>Example description</p>
+                <h3>Design 1</h3>
+                <p>Description</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="PASTE_RAW_LINK_HERE">
+            <div class="card-content">
+                <h3>Design 1</h3>
+                <p>Description</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="PASTE_RAW_LINK_HERE">
+            <div class="card-content">
+                <h3>Design 1</h3>
+                <p>Description</p>
             </div>
         </div>
 
