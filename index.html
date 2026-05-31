@@ -279,8 +279,8 @@ section{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 14, 20, 0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(10, 14, 20, 0.94);
+    backdrop-filter: blur(12px);
     z-index: 2000;
     display: flex;
     align-items: center;
@@ -297,9 +297,11 @@ section{
 
 .lightbox-content {
     position: relative;
-    max-width: 85%;
+    max-width: 80%;
     max-height: 80vh;
-    display: inline-flex;  /* Dynamically shrink-wraps exactly around the scaled image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lightbox-img {
@@ -308,68 +310,80 @@ section{
     object-fit: contain;
     border-radius: 8px;
     border: 1px solid var(--border);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
 }
 
-/* Close button - Fixed to stay inside the top-right corner of the image boundaries */
+/* Close button - Fixed directly to the top right screen layout area */
 .lightbox-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: var(--text);
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    color: var(--secondary);
     font-size: 2.2rem;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1;
     cursor: pointer;
-    background: rgba(13, 17, 23, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(22, 27, 34, 0.7);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    z-index: 2200;
+    z-index: 2300;
 }
 .lightbox-close:hover { 
     color: white;
     background: #ff4a4a;
     border-color: #ff4a4a;
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
-/* Circle Sideways V Navigation Buttons */
+/* Upgraded Lightbox SVG Arrow Buttons */
 .lightbox-btn {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(22, 27, 34, 0.8);
+    width: 56px;
+    height: 56px;
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 50%;
     color: white;
-    font-size: 1.4rem;
-    font-family: monospace;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2100;
+}
+
+.lightbox-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
 }
 
 .lightbox-btn:hover {
     background: var(--accent);
     border-color: var(--accent);
-    transform: translateY(-50%) scale(1.1);
+    color: white;
 }
 
-.lightbox-prev { left: 30px; }
-.lightbox-next { right: 30px; }
+.lightbox-prev { left: 40px; }
+.lightbox-prev:hover { transform: translateY(-50%) scale(1.08) translateX(-2px); }
+.lightbox-next { right: 40px; }
+.lightbox-next:hover { transform: translateY(-50%) scale(1.08) translateX(2px); }
 
 /* FOOTER */
 footer{
@@ -483,12 +497,16 @@ footer{
 </section>
 
 <div class="lightbox" id="portfolioLightbox">
-    <button class="lightbox-btn lightbox-prev" id="lbPrev">&lt;</button>
+    <button class="lightbox-btn lightbox-prev" id="lbPrev">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <div class="lightbox-content">
-        <button class="lightbox-close" id="lbClose">&times;</button>
         <img src="" alt="Preview" class="lightbox-img" id="lbImg">
     </div>
-    <button class="lightbox-btn lightbox-next" id="lbNext">&gt;</button>
+    <button class="lightbox-btn lightbox-next" id="lbNext">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="lightbox-close" id="lbClose">&times;</button>
 </div>
 
 <footer>© 2026 Portfolio</footer>
