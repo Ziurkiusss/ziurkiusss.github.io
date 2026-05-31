@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/avatars/1115710871587532980/64e0f5ba41d78f289f0eaade95fbb00d.png?size=4096" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minecraft Portfolio</title>
+<title>Ziurkiusss Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,7 +32,6 @@ body{
     font-family:Inter, sans-serif;
 }
 
-/* NAV */
 nav{
     position:fixed;
     top:20px;
@@ -60,7 +59,6 @@ nav a:hover{
     background:var(--accent);
 }
 
-/* CONTACT */
 .contact-btn{
     position:fixed;
     top:20px;
@@ -74,7 +72,6 @@ nav a:hover{
     font-weight:700;
 }
 
-/* HERO */
 .hero{
     min-height:65vh;
     display:flex;
@@ -97,7 +94,6 @@ nav a:hover{
     font-size:1.05rem;
 }
 
-/* HERO STATS */
 .hero-info{
     margin-top:30px;
     display:flex;
@@ -122,7 +118,6 @@ nav a:hover{
     font-weight:800;
 }
 
-/* SECTION */
 section{
     padding:50px 8% 100px 8%;
 }
@@ -135,7 +130,6 @@ section{
     margin-bottom:70px;
 }
 
-/* GALLERY */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fill, 440px);
@@ -175,7 +169,6 @@ section{
     justify-content:center;
 }
 
-/* PROJECTS */
 .projects-container {
     display:flex;
     flex-wrap:wrap;
@@ -207,7 +200,6 @@ section{
     object-fit:contain;
 }
 
-/* REVIEWS */
 .reviews{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -273,7 +265,6 @@ section{
     margin-top: 4px;
 }
 
-/* LIGHTBOX/POPUP GALLERY SYSTEM */
 .lightbox {
     position: fixed;
     top: 0;
@@ -314,7 +305,6 @@ section{
     box-shadow: 0 25px 60px rgba(0,0,0,0.6);
 }
 
-/* Close button - Fixed directly to the top right screen layout area */
 .lightbox-close {
     position: fixed;
     top: 25px;
@@ -343,7 +333,6 @@ section{
     transform: scale(1.08);
 }
 
-/* Upgraded Lightbox SVG Arrow Buttons */
 .lightbox-btn {
     position: fixed;
     top: 50%;
@@ -386,7 +375,6 @@ section{
 .lightbox-next { right: 40px; }
 .lightbox-next:hover { transform: translateY(-50%) scale(1.08) translateX(2px); }
 
-/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
@@ -409,8 +397,8 @@ footer{
 <a class="contact-btn" href="#">Contact Me</a>
 
 <div class="hero">
-    <h1>MINECRAFT PORTFOLIO</h1>
-    <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and design work.</p>
+    <h1>ZIURKIUSSS PORTFOLIO</h1>
+    <p>High-quality Minecraft Configuration and Design work.</p>
 
     <div class="hero-info">
         <div class="info-box"><span class="num">20+</span>Projects</div>
@@ -421,7 +409,7 @@ footer{
 </div>
 
 <section id="configs">
-<h2 class="section-title">CONFIGS</h2>
+<h2 class="section-title">CONFIGURATIONS</h2>
 <div class="gallery">
     <div class="card" data-gallery="config1"><img id="c1"><div class="card-content">CONFIG 1</div></div>
     <div class="card" data-gallery="config2"><img id="c2"><div class="card-content">CONFIG 2</div></div>
@@ -429,7 +417,7 @@ footer{
 </section>
 
 <section id="graphics">
-<h2 class="section-title">GRAPHICS</h2>
+<h2 class="section-title">DESIGNS</h2>
 <div class="gallery">
     <div class="card" data-gallery="design1"><img id="g1"><div class="card-content">DESIGN 1</div></div>
 </div>
@@ -514,7 +502,6 @@ footer{
 
 <script>
 
-/* REGISTER IMAGES PER SLOT */
 const galleries = {
     config1: [
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
@@ -529,12 +516,10 @@ const galleries = {
     ]
 };
 
-/* ASSIGN COVER IMAGES */
 document.getElementById("c1").src = galleries.config1[0];
 document.getElementById("c2").src = galleries.config2[0];
 document.getElementById("g1").src = galleries.design1[0];
 
-/* LIGHTBOX INTERACTION ENGINE */
 const lightbox = document.getElementById("portfolioLightbox");
 const lbImg = document.getElementById("lbImg");
 const lbClose = document.getElementById("lbClose");
@@ -599,7 +584,6 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") navigateGallery(1);
 });
 
-/* CLEAN DIRECT FETCH ENGINE WITHOUT PROXY HOOKS */
 const API = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
 
 async function load() {
@@ -613,7 +597,6 @@ async function load() {
         const defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${Number(id) % 5}.png`;
 
         try {
-            // Fetch directly from your API endpoint safely
             const res = await fetch(`${API}/?user=${id}`);
             
             if (!res.ok) throw new Error("Network error");
@@ -628,7 +611,6 @@ async function load() {
                 name.textContent = "Unknown";
             }
         } catch (err) {
-            // Handle error block instantly with clean fallback imagery
             img.src = defaultAvatar;
             name.textContent = "Unknown";
         }
