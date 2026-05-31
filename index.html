@@ -94,7 +94,6 @@ nav a:hover{
     color:var(--secondary);
     max-width:700px;
     font-size:1.05rem;
-    line-height:1.6;
 }
 
 /* HERO STATS */
@@ -135,7 +134,7 @@ section{
     margin-bottom:70px;
 }
 
-/* GRID */
+/* GALLERY */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fill, 440px);
@@ -143,7 +142,6 @@ section{
     gap:30px;
 }
 
-/* CARD */
 .card{
     width:440px;
     background:var(--card);
@@ -174,15 +172,30 @@ section{
     justify-content:center;
 }
 
-/* PROJECTS EMPTY SPACE HOLDER */
-#projects-input{
-    text-align:center;
-    color:var(--secondary);
-    font-size:14px;
-    margin-bottom:30px;
-    border:1px dashed var(--border);
-    padding:15px;
+/* PROJECTS */
+#projects{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+}
+
+.project-box{
+    width:120px;
+    height:120px;
     border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.project-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* REVIEWS */
@@ -197,12 +210,6 @@ section{
     border:1px solid var(--border);
     border-radius:16px;
     padding:16px;
-    transition:.25s;
-}
-
-.review-card:hover{
-    transform:translateY(-5px);
-    border-color:var(--accent);
 }
 
 .review-top{
@@ -255,15 +262,16 @@ footer{
 <nav>
     <a href="#configs">Configs</a>
     <a href="#graphics">Designs</a>
-    <a href="#servers">Projects</a>
+    <a href="#projects">Projects</a>
     <a href="#reviews">Reviews</a>
 </nav>
 
-<a class="contact-btn" href="https://discord.com/users/YOUR_ID">Contact Me</a>
+<a class="contact-btn" href="#">Contact Me</a>
 
+<!-- HERO -->
 <div class="hero">
     <h1>MINECRAFT PORTFOLIO</h1>
-    <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and graphic design work.</p>
+    <p>High-quality Minecraft configurations, PvP setups, FPS optimizations, and design work.</p>
 
     <div class="hero-info">
         <div class="info-box"><span class="num">20+</span>Projects</div>
@@ -273,26 +281,30 @@ footer{
     </div>
 </div>
 
+<!-- CONFIGS -->
 <section id="configs">
-<h2 class="section-title">CONFIGURATIONS</h2>
+<h2 class="section-title">CONFIGS</h2>
 <div class="gallery">
-    <div class="card"><img id="thumb0"><div class="card-content">CONFIG 1</div></div>
-    <div class="card"><img id="thumb1"><div class="card-content">CONFIG 2</div></div>
+    <div class="card"><img id="c1"><div class="card-content">CONFIG 1</div></div>
+    <div class="card"><img id="c2"><div class="card-content">CONFIG 2</div></div>
 </div>
 </section>
 
+<!-- GRAPHICS -->
 <section id="graphics">
-<h2 class="section-title">GRAPHIC DESIGN</h2>
+<h2 class="section-title">GRAPHICS</h2>
 <div class="gallery">
-    <div class="card"><img id="thumb2"><div class="card-content">DESIGN 1</div></div>
+    <div class="card"><img id="g1"><div class="card-content">DESIGN 1</div></div>
 </div>
 </section>
 
-<section id="servers">
+<!-- PROJECTS (EMPTY PLACEHOLDER) -->
+<section id="projects">
 <h2 class="section-title">PROJECTS</h2>
-
+   <div class="card"><img id="l1"></div>
 </section>
 
+<!-- REVIEWS -->
 <section id="reviews">
 <h2 class="section-title">REVIEWS</h2>
 
@@ -300,97 +312,65 @@ footer{
 
     <div class="review-card">
         <div class="review-top">
-            <img class="pfp" data-id="710920162131312791">
-            <div class="username">PlayerOne</div>
+            <img class="pfp" data-id="123456789012345678">
+            <div class="username">Loading...</div>
             <div class="rank">Client</div>
             <div class="stars">★★★★★</div>
         </div>
-        <div class="review-text">
-            Insane configs, boosted my FPS massively.
-        </div>
+        <div class="review-text">Insane configs.</div>
     </div>
 
     <div class="review-card">
         <div class="review-top">
             <img class="pfp" data-id="234567890123456789">
-            <div class="username">ServerOwner</div>
+            <div class="username">Loading...</div>
             <div class="rank">Owner</div>
             <div class="stars">★★★★★</div>
         </div>
-        <div class="review-text">
-            Very fast delivery and professional work.
-        </div>
+        <div class="review-text">Very professional work.</div>
     </div>
 
 </div>
 </section>
 
-<footer>
-© 2026 Portfolio
-</footer>
+<footer>© 2026 Portfolio</footer>
 
 <script>
 
-/* =========================
-   PROJECT LOGO LINKS ONLY
-   =========================
-   👉 PASTE SERVER LOGO IMAGES HERE
-*/
-const projectLogos = [
-       "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png"
-    // "https://your-server-logo2.png",
-    // "https://your-server-logo3.png"
-];
-
 /* CONFIG IMAGES */
-const projects = [
-{
-    images:[
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png",
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
-    ]
-}
-];
+document.getElementById("c1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png";
+document.getElementById("c2").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png";
+document.getElementById("g1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png";
 
-window.addEventListener("DOMContentLoaded", () => {
+document.getElementById("l1").src = "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config1.png";
 
-    document.getElementById("thumb0").src = projects[0].images[0];
-    document.getElementById("thumb1").src = projects[0].images[1];
-    document.getElementById("thumb2").src = projects[0].images[0];
+/* DISCORD API WORKER */
+const API = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
 
-    loadPfps();
-});
+async function load(){
+    const cards = document.querySelectorAll(".review-card");
 
-/* DISCORD WORKER */
-const API_BASE = "https://discord-avatar-api.ziurkius-ziurkius.workers.dev";
-
-async function loadPfps(){
-    const imgs = document.querySelectorAll(".pfp");
-
-    for(const img of imgs){
+    for(const c of cards){
+        const img = c.querySelector(".pfp");
+        const name = c.querySelector(".username");
         const id = img.dataset.id;
 
         try{
-            const res = await fetch(`${API_BASE}/user/${id}`);
-            const data = await res.json();
+            const res = await fetch(`${API}/user/${id}`);
+            const d = await res.json();
 
-            img.src = data.avatar
-                || `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
-
-            const name = img.parentElement.querySelector(".username");
-
-            if(name){
-                name.textContent =
-                    data.global_name ||
-                    data.username ||
-                    "Unknown";
-            }
+            img.src = d.avatar || `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+            name.textContent = d.global_name || d.username || "Unknown";
 
         }catch{
             img.src = `https://cdn.discordapp.com/embed/avatars/${Number(id)%5}.png`;
+            name.textContent = "Unknown";
         }
     }
 }
+
+load();
+
 </script>
 
 </body>
