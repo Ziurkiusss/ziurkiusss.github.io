@@ -148,16 +148,17 @@ section{
     gap:30px;
 }
 
-/* CARD */
+/* CARD (FIXED TIGHT VERSION) */
 .card{
     width:440px;
-    height:480px;
+    height:auto; /* IMPORTANT FIX */
     background:var(--card);
     border:1px solid var(--border);
     border-radius:18px;
     overflow:hidden;
     cursor:pointer;
     transition:.25s;
+
     display:flex;
     flex-direction:column;
 }
@@ -169,12 +170,14 @@ section{
 
 .card img{
     width:100%;
-    height:340px;
+    height:300px; /* tighter + balanced */
     object-fit:cover;
+    display:block;
 }
 
+/* TITLE AREA (YOU SET 60PX) */
 .card-content{
-    height:60px;              /* smaller overall title area */
+    height:60px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -183,11 +186,8 @@ section{
 
 .card-title-wrap{
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:center;
-
-    padding:0.5px 0;             /* very small but equal top/bottom */
 }
 
 .card-content h3{
@@ -318,18 +318,14 @@ Contact Me
     <div class="card" onclick="openGallery(0)">
         <img src="img1.png">
         <div class="card-content">
-            <div class="card-title-wrap">
-                <h3>CONFIG 1</h3>
-            </div>
+            <h3>CONFIG 1</h3>
         </div>
     </div>
 
     <div class="card" onclick="openGallery(1)">
         <img src="img4.png">
         <div class="card-content">
-            <div class="card-title-wrap">
-                <h3>CONFIG 2</h3>
-            </div>
+            <h3>CONFIG 2</h3>
         </div>
     </div>
 
@@ -344,9 +340,7 @@ Contact Me
     <div class="card" onclick="openGallery(2)">
         <img src="img6.png">
         <div class="card-content">
-            <div class="card-title-wrap">
-                <h3>DESIGN 1</h3>
-            </div>
+            <h3>DESIGN 1</h3>
         </div>
     </div>
 
