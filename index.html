@@ -219,11 +219,11 @@ section{
     border:1px solid var(--border);
     border-radius:16px;
     padding:20px;
-    /* Force a minimum height so cards look uniform even with short text */
     min-height: 160px; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* Changed from space-between to normal layout flow */
+    justify-content: flex-start; 
 }
 
 .review-top{
@@ -236,9 +236,10 @@ section{
 .review-text{
     font-size:0.95rem;
     line-height:1.4;
-    /* Added to handle long text safely */
     word-break: break-word; 
     overflow-wrap: anywhere;
+    /* Controls the exact gap between rank and text */
+    margin-top: 8px; 
 }
 
 .pfp{
