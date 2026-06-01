@@ -419,7 +419,8 @@ footer{
 <section id="graphics">
 <h2 class="section-title">DESIGNS</h2>
 <div class="gallery">
-    <div class="card" data-gallery="design1"><img id="g1"><div class="card-content">DESIGN 1</div></div>
+    <div class="card" data-gallery="design1"><img id="d1"><div class="card-content">Logo of EarthCube Server</div></div>
+    <div class="card" data-gallery="design1"><img id="d2"><div class="card-content">Logo of RSpill Server</div></div>
 </div>
 </section>
 
@@ -512,13 +513,17 @@ const galleries = {
         "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/configs/config2.png"
     ],
     design1: [
-        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/main/photos/graphics/design1.png"
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/refs/heads/main/photos/projects/server1.png"
+    ],
+    design2: [
+        "https://raw.githubusercontent.com/Ziurkiusss/ziurkiusss.github.io/refs/heads/main/photos/projects/server2.png"
     ]
 };
 
 document.getElementById("c1").src = galleries.config1[0];
 document.getElementById("c2").src = galleries.config2[0];
-document.getElementById("g1").src = galleries.design1[0];
+document.getElementById("d1").src = galleries.design1[0];
+document.getElementById("d2").src = galleries.design2[0];
 
 const lightbox = document.getElementById("portfolioLightbox");
 const lbImg = document.getElementById("lbImg");
