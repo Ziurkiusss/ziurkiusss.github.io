@@ -30,6 +30,7 @@ body{
     background:var(--bg);
     color:var(--text);
     font-family:Inter, sans-serif;
+    overflow-x: hidden;
 }
 
 nav{
@@ -163,7 +164,8 @@ section{
 .card img{
     width:100%;
     height:260px;
-    object-fit:cover;
+    object-fit:contain;
+    background:#000;
 }
 
 .card-content{
@@ -299,8 +301,8 @@ section{
 
 .lightbox-content {
     position: relative;
-    max-width: 90%;
-    max-height: 80vh;
+    width: 90%;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -308,7 +310,7 @@ section{
 
 .lightbox-img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
     border: 1px solid var(--border);
